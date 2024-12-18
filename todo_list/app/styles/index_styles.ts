@@ -7,8 +7,8 @@ const indexStyles = (isDarkMode: boolean) =>
       backgroundColor: isDarkMode ? "#070707" : "#F7F7F7",
     },
     inputContainer: {
-      padding: 13,
-      marginBlock: 7,
+      paddingInline: 13,
+      marginBottom: 7,
       borderBottomWidth: 1,
       borderColor: isDarkMode ? "#333" : "#ccc",
     },
@@ -33,18 +33,21 @@ const indexStyles = (isDarkMode: boolean) =>
       color: "#fff",
       fontWeight: "bold",
     },
-    toggleButton: {
-      backgroundColor: isDarkMode ? "#A7BAB7" : "#A7AFBA",
-      padding: 13,
-      marginBottom: 13,
+    topBar: {
+      flexDirection: "row",
+      justifyContent: "space-around",
       alignItems: "center",
-      borderRadius: 7,
-      width: "40%",
-      alignSelf: "flex-start",
+      padding: 0,
     },
-    toggleButtonText: {
-      color: isDarkMode ? "#222" : "#333",
-      fontWeight: "bold",
+    switchContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    icon: {
+      marginRight: 13,
+    },
+    switch: {
+      transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }],
     },
     listItem: {
       padding: 13,
@@ -99,7 +102,7 @@ const indexStyles = (isDarkMode: boolean) =>
     },
     deleteButton: {
       backgroundColor: "#8C1111",
-      padding: 13,
+      padding: 8,
       marginTop: 7,
       borderRadius: 7,
       width: "31%",

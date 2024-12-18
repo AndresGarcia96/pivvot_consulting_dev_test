@@ -18,17 +18,20 @@ import {
 } from "../../api_config/task_api/task_api";
 import indexStyles from "../styles/index_styles";
 
-type ItemData = {
-  id: string;
-  title: string;
-  description: string;
-};
+import { useTranslation } from "react-i18next";
+import { Language } from "@/components/Languaje/Languaje";
+import { Switch } from "react-native-gesture-handler";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const HomeScreen = () => {
+  const { t } = useTranslation();
+
   const [tasks, setTasks] = useState<ItemData[]>([]);
   const [newTitle, setNewTitle] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [selectedTask, setSelectedTask] = useState<ItemData | null>(null);
+
+  const toggleSwitch = () => setIsDarkMode((previousState) => !previousState);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const styles = indexStyles(isDarkMode);
@@ -119,7 +122,9 @@ const HomeScreen = () => {
         onPress={() => deleteSelectedTask(item.id)}
         style={styles.deleteButton}
       >
-        <Text style={styles.deleteButtonText}>Eliminar</Text>
+        <Text style={styles.deleteButtonText}>
+          {t("home.deleteTaskButton")}
+        </Text>
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -135,14 +140,14 @@ const HomeScreen = () => {
             </Text>
             <TextInput
               style={styles.input}
-              placeholder="Nuevo Titulo"
+              placeholder={t("home.newTitleInput")}
               placeholderTextColor={isDarkMode ? "#aaa" : "#888"}
               value={newTitle}
               onChangeText={setNewTitle}
             />
             <TextInput
               style={styles.input}
-              placeholder="Nueva Descripción"
+              placeholder={t("home.newDescriptionInput")}
               placeholderTextColor={isDarkMode ? "#aaa" : "#888"}
               value={newDescription}
               onChangeText={setNewDescription}
@@ -152,13 +157,15 @@ const HomeScreen = () => {
               style={styles.updateButton}
               onPress={() => updateSelectedTask(selectedTask.id)}
             >
-              <Text style={styles.updateButtonText}>Actualizar</Text>
+              <Text style={styles.updateButtonText}>
+                {t("home.updateTaskButton")}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.backButton}
               onPress={() => setSelectedTask(null)}
             >
-              <Text style={styles.backButtonText}>Regresar</Text>
+              <Text style={styles.backButtonText}>{t("home.backButton")}</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -169,42 +176,52 @@ const HomeScreen = () => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TouchableOpacity
-            style={styles.toggleButton}
-            onPress={() => setIsDarkMode(!isDarkMode)}
-          >
-            <Text style={styles.toggleButtonText}>
-              {isDarkMode ? "Modo Claro" : "Modo Oscuro"}
-            </Text>
-          </TouchableOpacity>
+        <View style={styles.topBar}>
+          <Language />
 
+          <View style={styles.switchContainer}>
+            <FontAwesome5
+              name={isDarkMode ? "moon" : "sun"}
+              size={22}
+              color={isDarkMode ? "#F4D03F" : "#333"}
+              style={styles.icon}
+            />
+            <Switch
+              style={styles.switch}
+              trackColor={{ false: "#A7BAB7", true: "#F7F7F7" }}
+              thumbColor={isDarkMode ? "#F4D03F" : "#F4D03F"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isDarkMode}
+            />
+          </View>
+        </View>
+
+        <View style={styles.inputContainer}>
           <Text
             style={[
               styles.principalTitleTask,
               { color: isDarkMode ? "#fff" : "#000" },
             ]}
           >
-            Crear Nueva Tarea
+            {t("home.createNewTask")}
           </Text>
-
           <TextInput
             style={styles.input}
-            placeholder="Titulo de la tarea"
+            placeholder={t("home.taskTitleInput")}
             placeholderTextColor={isDarkMode ? "#aaa" : "#888"}
             value={newTitle}
             onChangeText={setNewTitle}
           />
           <TextInput
             style={styles.input}
-            placeholder="Descripción de la tarea"
+            placeholder={t("home.taskDescriptionInput")}
             placeholderTextColor={isDarkMode ? "#aaa" : "#888"}
             value={newDescription}
             onChangeText={setNewDescription}
           />
-
           <TouchableOpacity style={styles.addButton} onPress={addTask}>
-            <Text style={styles.addButtonText}>Añadir Tarea</Text>
+            <Text style={styles.addButtonText}>{t("home.addTask")}</Text>
           </TouchableOpacity>
         </View>
         <Text
@@ -213,7 +230,7 @@ const HomeScreen = () => {
             { color: isDarkMode ? "#fff" : "#000" },
           ]}
         >
-          Lista de Tareas
+          {t("home.taskList")}
         </Text>
 
         <FlatList

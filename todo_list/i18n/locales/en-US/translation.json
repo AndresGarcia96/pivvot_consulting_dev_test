@@ -1,0 +1,19 @@
+{
+  "language": "Language",
+  "home": {
+    "createNewTask": "Create New task",
+    "taskList": "Task List",
+    "addTask": "Add task",
+    "taskTitleInput": "Task title",
+    "taskDescriptionInput": "Task description",
+    "updateTask": "Update task",
+    "deleteTask": "Delete task",
+    "newTitleInput": "New title",
+    "newDescriptionInput": "New description",
+    "deleteTaskButton": "Delete",
+    "updateTaskButton": "Update",
+    "backButton": "Back",
+    "clearMode": "Clear Mode",
+    "darkButton": "Dark Mode"
+  }
+}

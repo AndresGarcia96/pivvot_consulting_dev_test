@@ -1,0 +1,19 @@
+{
+  "language": "Idioma",
+  "home": {
+    "createNewTask": "Crear nueva tarea",
+    "taskList": "Lista de tareas",
+    "addTask": "Añadir tarea",
+    "taskTitleInput": "Título de la tarea",
+    "taskDescriptionInput": "Descripción de la tarea",
+    "updateTask": "Actualizar tarea",
+    "deleteTask": "Eliminar tarea",
+    "newTitleInput": "Nuevo título",
+    "newDescriptionInput": "Nueva descripción",
+    "deleteTaskButton": "Eliminar",
+    "updateTaskButton": "Actualizar",
+    "backButton": "Atrás",
+    "clearMode": "Modo Claro",
+    "darkButton": "Modo Oscuro"
+  }
+}
